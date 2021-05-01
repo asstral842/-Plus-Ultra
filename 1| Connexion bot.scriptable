@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "deep-gray",
+    "glyph" : "magic"
+  },
+  "name" : "Untitled Script 1",
+  "script" : "{\n    \"token\": \"t88cMeAGYl5TvkHn7NGma7UVuN1xLE-d\"\n}",
+  "share_sheet_inputs" : [
+
+  ]
+}

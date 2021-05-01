@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "deep-brown",
+    "glyph" : "magic"
+  },
+  "name" : "Untitled Script",
+  "script" : "module.exports = {\n    name: \"ban\",\n    description: \"ban command\",\n\n    async run (bot, message, args) {\n        if (!message.member.hasPermission(\"BAN_MEMBERS\")) return message.channel.send(\"You cant use this command!\")\n\n        const mentionMember = message.mentions.members.first();\n        let reason = args.slice(1).join(\" \"); \/\/.ban <args(0) aka @member> | <args(1) aka reason>\n        if (!reason) reason = \"No reason given\";\n\n        const embed = new Discord.MessageEmbed()\n        .setTitle(`You were banned from **${message.guild.name}**`)\n        .setDescription(`Reason: ${reason}`)\n        .setColor(\"RANDOM\")\n        .setTimestamp()\n        .setFooter(bot.user.tag, bot.user.displayAvatarURL())\n\n        if (!args[0]) return message.channel.send(\"You need to specify a user to ban\");\n\n        if(!mentionMember) return message.channel.send(\"This user is not a valid user \/ is no-longer in the server!\");\n\n        if(!mentionMember.bannable) return message.channel.send(\"I was unable to ban this user!\");\n\n        await mentionMember.send(embed);\n        await mentionMember.ban({\n            reason: reason\n        }).then(() => message.channel.send(\"Successfully banned: \" + mentionMember.user.tag));\n    }\n}\n",
+  "share_sheet_inputs" : [
+
+  ]
+}

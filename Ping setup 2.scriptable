@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "yellow",
+    "glyph" : "magic"
+  },
+  "name" : "Untitled Script 4",
+  "script" : "const bot = new Discord.Client();\n\n\nconst { token } = require('.\/config.json');\n\nconst { readdirSync, read } = require('fs');\n\nconst { join } = require('path');\n\nbot.commands = new Discord.Collection();\n\nconst prefix = '.';\n\/\/this prefix can be what ever you want ;)\n\nconst commandFiles = readdirSync(join(__dirname, \"commands\")).filter(file => file.endsWith(\".js\"));\n\nfor (const file of commandFiles) {\n    const  command = require(join(__dirname, \"commands\", `${file}`));\n    bot.commands.set(command.name, command);\n}\n\nbot.on(\"error\", console.error);\n\n\n\/\/------------------------------------------------------------------------------\nbot.on('ready', () => {\n    console.log('Bot is ready!');\n})\n\/\/------------------------------------------------------------------------------\n\nbot.on(\"message\", async message => {\n\n    if(message.author.bot) return;\n    if(message.channel.type === 'dm') return;\n\n    if(message.content.startsWith(prefix)) {\n        const args = message.content.slice(prefix.length).trim().split(\/ +\/);\n\n        const command = args.shift().toLowerCase();\n\n        if(!bot.commands.has(command)) return;\n\n\n        try {\n            bot.commands.get(command).run(bot, message, args);\n        } catch (error){\n            console.error(error);\n        }\n    }\n})\n\nbot.login(token);",
+  "share_sheet_inputs" : [
+
+  ]
+}

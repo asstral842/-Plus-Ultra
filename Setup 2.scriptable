@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "orange",
+    "glyph" : "magic"
+  },
+  "name" : "Untitled Script 2",
+  "script" : "const Discord = require('discord.js');\n\nconst bot = new Discord.Client();\n\nconst { token } = require('.\/config.json');\n\nbot.on('ready', () => {\n    console.log('Bot is ready!');\n})\n\n\nbot.login(token);\n",
+  "share_sheet_inputs" : [
+
+  ]
+}
